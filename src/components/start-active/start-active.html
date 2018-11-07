@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button secondary class="button-block">Iniciar atividade</button>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+      {{ item }}
+    </button>
+  </ion-list>
+</ion-content>

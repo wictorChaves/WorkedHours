@@ -1,3 +1,4 @@
+import { StartActiveComponent } from './../components/start-active/start-active';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -12,7 +13,7 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = StartActiveComponent;
 
   pages: Array<{title: string, component: any}>;
 
@@ -22,7 +23,8 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'List', component: ListPage },
+      { title: 'startActive', component: StartActiveComponent }
     ];
 
   }
