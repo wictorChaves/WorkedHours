@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Atividades</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -20,4 +20,10 @@
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
   </div>
+  <ion-fab bottom right>
+    <button ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>

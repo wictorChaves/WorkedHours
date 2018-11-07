@@ -8,6 +8,10 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-row>
+    <ion-label>Total trabalhado</ion-label>
+    <ion-label text-center>08:54</ion-label>
+  </ion-row>
   <button ion-button secondary class="button-block">Iniciar atividade</button>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">

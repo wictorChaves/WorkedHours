@@ -24,7 +24,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'startActive', component: StartActiveComponent }
+      { title: 'Iniciar atividade', component: StartActiveComponent }
     ];
 
   }
