@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import * as firebase from 'Firebase';
 
 /**
  * Generated class for the StartActiveComponent component.
@@ -33,12 +34,41 @@ export class StartActiveComponent {
     'Halo'
   ];
 
-  constructor(public navCtrl: NavController) {
-    console.log('Hello StartActiveComponent Component');
+  ref = firebase.database().ref('job/');
+
+  constructor(public navCtrl: NavController, private navParams: NavParams) {
+
+    console.log("ID: " + navParams.get('id'));
+
+    /*
+    console.log("Resultados");
+    this.ref.on('value', resp => {
+      //this.items = [];
+
+
+      var returnArr = [];
+
+      resp.forEach(childSnapshot => {
+        let item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        returnArr.push(item);
+      });
+
+      console.log(returnArr);
+
+    });*/
   }
 
   itemSelected(item: string) {
     console.log("Selected Item", item);
+  }
+
+  eventClickBtnStartActivity(event: any) {
+    console.log(this.getTimeStamp());
+  }
+
+  getTimeStamp(){
+    return  Math.round((new Date()).getTime() / 1000);
   }
 
 }

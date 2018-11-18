@@ -1,3 +1,5 @@
+import { environment } from './../environments/environment';
+import { JobCreateComponent } from './../components/job-create/job-create';
 import { StartActiveComponent } from './../components/start-active/start-active';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
@@ -7,15 +9,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
+import * as firebase from 'firebase';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = StartActiveComponent;
+  rootPage: any = JobCreateComponent;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -24,6 +28,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
+      { title: 'Novo trabalho', component: JobCreateComponent },
       { title: 'Iniciar atividade', component: StartActiveComponent }
     ];
 
@@ -36,6 +41,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    firebase.initializeApp(environment.firebase);
   }
 
   openPage(page) {

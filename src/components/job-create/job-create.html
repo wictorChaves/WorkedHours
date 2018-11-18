@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Novo trabalho</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="eventSubmit()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>Nome</ion-label>
+        <ion-input [(ngModel)]="job.name" name="name" type="text" value=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Descrição</ion-label>
+        <ion-textarea [(ngModel)]="job.description" name="description"></ion-textarea>
+      </ion-item>
+
+    </ion-list>
+    <button type="submit" ion-button secondary class="button-block">Salvar</button>
+  </form>
+</ion-content>
