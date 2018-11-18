@@ -1,3 +1,4 @@
+import { JobListComponent } from './../components/job-list/job-list';
 import { JobCreateComponent } from './../components/job-create/job-create';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { StartActiveComponent } from '../components/start-active/start-active';
     HomePage,
     ListPage,
     StartActiveComponent,
-    JobCreateComponent
+    JobCreateComponent,
+    JobListComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { StartActiveComponent } from '../components/start-active/start-active';
     HomePage,
     ListPage,
     StartActiveComponent,
-    JobCreateComponent
+    JobCreateComponent,
+    JobListComponent
   ],
   providers: [
     StatusBar,

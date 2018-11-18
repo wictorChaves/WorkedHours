@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>{{ Job.name }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -12,7 +12,7 @@
     <ion-label>Total trabalhado</ion-label>
     <ion-label text-center>08:54</ion-label>
   </ion-row>
-  <button (click)="eventClickBtnStartActivity($event)" ion-button secondary class="button-block">Iniciar atividade</button>
+  <button (click)="eventClickBtnStartActivity($event)" ion-button secondary class="button-block">{{ labelBtnStart }}</button>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
       {{ item }}

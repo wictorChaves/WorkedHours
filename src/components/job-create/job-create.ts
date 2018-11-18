@@ -1,3 +1,4 @@
+import { DatetimeHelper } from './../../helper/DatetimeHelper';
 import { StartActiveComponent } from './../start-active/start-active';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -22,12 +23,12 @@ export class JobCreateComponent {
   }
 
   eventSubmit() {
-    console.log(this.job)
-    let newInfo = firebase.database().ref('job/').push();
-    newInfo.set(this.job);
-    console.log(newInfo.key);
+    let newJob = firebase.database().ref('job/').push();
+    this.job['created_at'] = DatetimeHelper.getTimeStamp();
+    this.job['updated_at'] = DatetimeHelper.getTimeStamp();
+    newJob.set(this.job);
     this.navCtrl.push(StartActiveComponent, {
-      id: newInfo.key
+      id: newJob.key
     });
   }
 

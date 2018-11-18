@@ -1,6 +1,6 @@
+import { JobListComponent } from './../components/job-list/job-list';
 import { environment } from './../environments/environment';
 import { JobCreateComponent } from './../components/job-create/job-create';
-import { StartActiveComponent } from './../components/start-active/start-active';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,7 +17,7 @@ import * as firebase from 'firebase';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = JobCreateComponent;
+  rootPage: any = JobListComponent;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -28,8 +28,8 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'Novo trabalho', component: JobCreateComponent },
-      { title: 'Iniciar atividade', component: StartActiveComponent }
+      { title: 'Trabalhos', component: JobListComponent },
+      { title: 'Novo trabalho', component: JobCreateComponent }
     ];
 
   }
