@@ -30,7 +30,7 @@ export class StartActiveComponent {
       this.Job = resp.val();
       if (!this.Job.hasOwnProperty('worked')) {
         this.Job['worked'] = [];
-      }else{
+      } else {
         this.updateListTime();
       }
     });
@@ -45,6 +45,7 @@ export class StartActiveComponent {
   }
 
   eventClickBtnStartActivity(event: any) {
+
     let worked: any[] = this.Job['worked'];
     worked.push(DatetimeHelper.getTimeStamp());
     this.Job['worked'] = worked;
@@ -57,17 +58,15 @@ export class StartActiveComponent {
   }
 
   updateListTime() {
-    if (this.Job['worked'].length % 2 == 0) {
-      var i = 2;
-      this.items = [];
-      var countTotal = 0;
-      for (i = 2; i <= this.Job['worked'].length; i += 2) {
-        let seconds = this.Job['worked'][i - 1] - this.Job['worked'][i - 2];
-        this.items.push(DatetimeHelper.second2time(seconds));
-        countTotal = countTotal + seconds;
-      }
-      this.total = DatetimeHelper.second2time(countTotal);
+    var i = 2;
+    this.items = [];
+    var countTotal = 0;
+    for (i = 2; i <= this.Job['worked'].length; i += 2) {
+      let seconds = this.Job['worked'][i - 1] - this.Job['worked'][i - 2];
+      this.items.push(DatetimeHelper.second2time(seconds));
+      countTotal = countTotal + seconds;
     }
+    this.total = DatetimeHelper.second2time(countTotal);
     this.updateJob();
   }
 

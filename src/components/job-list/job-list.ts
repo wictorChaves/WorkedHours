@@ -1,6 +1,6 @@
 import { JobCreateComponent } from './../job-create/job-create';
 import { StartActiveComponent } from './../start-active/start-active';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'Firebase';
 
@@ -10,14 +10,11 @@ import * as firebase from 'Firebase';
 })
 export class JobListComponent {
 
-  ref = firebase.database().ref('job/');
-  items: Array<{ id: number, title: string, note: string, icon: string }>;
+  items: Array<{ id: number, title: string, note: string, icon: string }> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-    this.items = [];
-
-    this.ref.on('value', resp => {
+    firebase.database().ref('job/').on('value', resp => {
+      this.items = [];
       resp.forEach(childSnapshot => {
         this.items.push(this.createItemObj(childSnapshot));
       });
