@@ -1,3 +1,4 @@
+import { CreateUserComponent } from './../components/create-user/create-user';
 import { JobListComponent } from './../components/job-list/job-list';
 import { JobCreateComponent } from './../components/job-create/job-create';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +20,7 @@ import { StartActiveComponent } from '../components/start-active/start-active';
     ListPage,
     StartActiveComponent,
     JobCreateComponent,
+    CreateUserComponent,
     JobListComponent
   ],
   imports: [
@@ -32,6 +34,7 @@ import { StartActiveComponent } from '../components/start-active/start-active';
     ListPage,
     StartActiveComponent,
     JobCreateComponent,
+    CreateUserComponent,
     JobListComponent
   ],
   providers: [
