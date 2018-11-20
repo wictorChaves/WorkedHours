@@ -1,3 +1,4 @@
+import { LoginComponent } from './../components/login/login';
 import { CreateUserComponent } from './../components/create-user/create-user';
 import { JobListComponent } from './../components/job-list/job-list';
 import { environment } from './../environments/environment';
@@ -18,7 +19,7 @@ import * as firebase from 'firebase';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = CreateUserComponent;
+  rootPage: any = LoginComponent;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -31,7 +32,8 @@ export class MyApp {
       { title: 'List', component: ListPage },
       { title: 'Trabalhos', component: JobListComponent },
       { title: 'Novo trabalho', component: JobCreateComponent },
-      { title: 'Novo Usuário', component: CreateUserComponent }      
+      { title: 'Login', component: LoginComponent },
+      { title: 'Novo Usuário', component: CreateUserComponent }  
     ];
 
   }

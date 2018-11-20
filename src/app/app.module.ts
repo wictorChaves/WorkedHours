@@ -1,3 +1,4 @@
+import { LoginComponent } from './../components/login/login';
 import { CreateUserComponent } from './../components/create-user/create-user';
 import { JobListComponent } from './../components/job-list/job-list';
 import { JobCreateComponent } from './../components/job-create/job-create';
@@ -21,6 +22,7 @@ import { StartActiveComponent } from '../components/start-active/start-active';
     StartActiveComponent,
     JobCreateComponent,
     CreateUserComponent,
+    LoginComponent,
     JobListComponent
   ],
   imports: [
@@ -35,6 +37,7 @@ import { StartActiveComponent } from '../components/start-active/start-active';
     StartActiveComponent,
     JobCreateComponent,
     CreateUserComponent,
+    LoginComponent,
     JobListComponent
   ],
   providers: [

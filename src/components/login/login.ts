@@ -3,10 +3,10 @@ import { AlertController } from 'ionic-angular';
 import * as firebase from 'Firebase';
 
 @Component({
-  selector: 'create-user',
-  templateUrl: 'create-user.html'
+  selector: 'login',
+  templateUrl: 'login.html'
 })
-export class CreateUserComponent {
+export class LoginComponent {
 
   user = {};
 
@@ -16,8 +16,8 @@ export class CreateUserComponent {
   eventSubmit() {
     if (this.validation()) {
       var self = this;
-      firebase.auth().createUserWithEmailAndPassword(this.user['email'], this.user['password']).then(() => {
-        self.successAlert('Usuário cadastrado com sucesso!');
+      firebase.auth().signInWithEmailAndPassword(this.user['email'], this.user['password']).then(() => {
+        self.successAlert('Usuário logado!');
       }).catch(function (error) {
         self.customMessage(error.code, error.message);
       });
@@ -26,16 +26,12 @@ export class CreateUserComponent {
 
   customMessage(errorCode, errorMessage) {
     switch (errorCode) {
-      case 'auth/invalid-email': {
-        errorMessage = 'E-mail inválido';
+      case 'auth/user-not-found': {
+        errorMessage = 'Usuário não cadastrado';
         break;
       }
-      case 'auth/weak-password': {
-        errorMessage = 'A senha deve ter no mínimo 6 caracteres';
-        break;
-      }
-      case 'auth/email-already-in-use': {
-        errorMessage = 'E-mail já esta cadastrado';
+      case 'auth/wrong-password': {
+        errorMessage = 'Senha incorreta';
         break;
       }
     }
@@ -46,10 +42,6 @@ export class CreateUserComponent {
   validation() {
     if (this.isEmpty(this.user['email'])) {
       this.erroAlert('Favor preencher o e-mail!');
-      return false;
-    }
-    if (this.user['password'] != this.user['confirmPassword']) {
-      this.erroAlert('A senha e a confirmação precisam ser iguais');
       return false;
     }
     if (this.isEmpty(this.user['password'])) {
@@ -71,7 +63,7 @@ export class CreateUserComponent {
     this.alert('Tudo certo!', message);
   }
 
-  alert(title, message, btn:Array<string> = ['ok']) {
+  alert(title, message, btn: Array<string> = ['ok']) {
     const alert = this.alertCtrl.create({
       title: title,
       subTitle: message,
