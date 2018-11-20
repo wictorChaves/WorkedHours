@@ -25,6 +25,7 @@ export class StartActiveComponent {
 
   constructor(public navCtrl: NavController, private navParams: NavParams) {
     this.id = navParams.get('id');
+    
     let newInfo = firebase.database().ref('job/' + this.id);
     newInfo.on('value', resp => {
       this.Job = resp.val();

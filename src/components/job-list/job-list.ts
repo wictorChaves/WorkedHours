@@ -13,6 +13,16 @@ export class JobListComponent {
   items: Array<{ id: number, title: string, note: string, icon: string }> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    firebase.auth().createUserWithEmailAndPassword('wictor@teste.com', 'password@123').catch(function (error) {
+      
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      
+      console.log(errorCode);
+      console.log(errorMessage);
+    });
+
     firebase.database().ref('job/').on('value', resp => {
       this.items = [];
       resp.forEach(childSnapshot => {
