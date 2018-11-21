@@ -71,7 +71,7 @@ export class CreateUserComponent {
     this.alert('Tudo certo!', message);
   }
 
-  alert(title, message, btn:Array<string> = ['ok']) {
+  alert(title, message, btn: Array<string> = ['ok']) {
     const alert = this.alertCtrl.create({
       title: title,
       subTitle: message,

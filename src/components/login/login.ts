@@ -1,5 +1,6 @@
+import { CreateUserComponent } from './../create-user/create-user';
 import { Component } from '@angular/core';
-import { AlertController } from 'ionic-angular';
+import { AlertController, NavController } from 'ionic-angular';
 import * as firebase from 'Firebase';
 
 @Component({
@@ -10,7 +11,7 @@ export class LoginComponent {
 
   user = {};
 
-  constructor(public alertCtrl: AlertController) {
+  constructor(private navCtrl: NavController, public alertCtrl: AlertController) {
   }
 
   eventSubmit() {
@@ -70,6 +71,11 @@ export class LoginComponent {
       buttons: btn
     });
     alert.present();
+  }
+
+  eventBtnCreateAccount(event) {
+    console.log(event);
+    this.navCtrl.push(CreateUserComponent);
   }
 
 }

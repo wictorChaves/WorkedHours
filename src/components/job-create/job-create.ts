@@ -1,3 +1,4 @@
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { DatetimeHelper } from './../../helper/DatetimeHelper';
 import { StartActiveComponent } from './../start-active/start-active';
 import { Component } from '@angular/core';
@@ -18,9 +19,13 @@ export class JobCreateComponent {
 
   job = {}
 
-  constructor(private navCtrl: NavController) {
+  constructor(private navCtrl: NavController, public authService: AuthServiceProvider) {
 
   }
+
+  ionViewCanEnter() {
+    return this.authService.authenticated();
+  } 
 
   eventSubmit() {
     let newJob = firebase.database().ref('job/').push();

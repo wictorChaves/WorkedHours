@@ -1,14 +1,9 @@
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { DatetimeHelper } from './../../helper/DatetimeHelper';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'Firebase';
 
-/**
- * Generated class for the StartActiveComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'start-active',
   templateUrl: 'start-active.html'
@@ -23,7 +18,7 @@ export class StartActiveComponent {
 
   ref = firebase.database().ref('job/');
 
-  constructor(public navCtrl: NavController, private navParams: NavParams) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, public authService: AuthServiceProvider) {
     this.id = navParams.get('id');
     
     let newInfo = firebase.database().ref('job/' + this.id);
@@ -35,6 +30,10 @@ export class StartActiveComponent {
         this.updateListTime();
       }
     });
+  }
+
+  ionViewCanEnter() {
+    return this.authService.authenticated();
   }
 
   changeLabel() {

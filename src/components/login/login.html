@@ -1,8 +1,5 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>Login</ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,18 +7,20 @@
 <ion-content padding>
   <form (ngSubmit)="eventSubmit()">
     <ion-list>
-
       <ion-item>
         <ion-label fixed>E-mail</ion-label>
         <ion-input [(ngModel)]="user.email" name="email" type="text" value=""></ion-input>
       </ion-item>
-
       <ion-item>
         <ion-label fixed>Senha</ion-label>
         <ion-input [(ngModel)]="user.password" name="password" type="password" value=""></ion-input>
       </ion-item>
-
     </ion-list>
-    <button type="submit" ion-button secondary class="button-block">Criar conta</button>
+    <button type="submit" ion-button secondary class="button-block">Entrar</button>
   </form>
+  <div class="row">
+    <div class="col">
+      <button class="button-block" (click)="eventBtnCreateAccount($event)" ion-button clear>Crie uma conta</button>
+    </div>
+  </div>
 </ion-content>

@@ -1,3 +1,4 @@
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { JobCreateComponent } from './../job-create/job-create';
 import { StartActiveComponent } from './../start-active/start-active';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,19 @@ export class JobListComponent {
 
   items: Array<{ id: number, title: string, note: string, icon: string }> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {   
+    
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      console.log('User is signed in.');
+    } else {
+      console.log('No user is signed in.');
+    }
+
+    console.log(user);
+
+
     firebase.database().ref('job/').on('value', resp => {
       this.items = [];
       resp.forEach(childSnapshot => {
@@ -20,6 +33,10 @@ export class JobListComponent {
       });
     });
   }
+
+  ionViewCanEnter() {
+    return this.authService.authenticated();
+  } 
 
   createItemObj(childSnapshot) {
     let item = childSnapshot.val();

@@ -1,5 +1,5 @@
+import { AuthServiceProvider } from './../providers/auth-service/auth-service';
 import { LoginComponent } from './../components/login/login';
-import { CreateUserComponent } from './../components/create-user/create-user';
 import { JobListComponent } from './../components/job-list/job-list';
 import { environment } from './../environments/environment';
 import { JobCreateComponent } from './../components/job-create/job-create';
@@ -7,11 +7,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-
-import * as firebase from 'firebase';
+import * as firebase from 'Firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,17 +19,12 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public authService: AuthServiceProvider) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
+    
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
       { title: 'Trabalhos', component: JobListComponent },
-      { title: 'Novo trabalho', component: JobCreateComponent },
-      { title: 'Login', component: LoginComponent },
-      { title: 'Novo Usuário', component: CreateUserComponent }  
+      { title: 'Novo trabalho', component: JobCreateComponent }
     ];
 
   }
@@ -53,4 +44,13 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  logout(event) {
+    firebase.auth().signOut().then(function () {
+      console.log('Signed Out');
+    }, function (error) {
+      console.error('Sign Out Error', error);
+    });
+  }
+
 }
