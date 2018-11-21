@@ -32,7 +32,7 @@ export class JobCreateComponent {
     this.job['created_at'] = DatetimeHelper.getTimeStamp();
     this.job['updated_at'] = DatetimeHelper.getTimeStamp();
     newJob.set(this.job);
-    this.navCtrl.push(StartActiveComponent, {
+    this.navCtrl.setRoot(StartActiveComponent, {
       id: newJob.key
     });
   }
