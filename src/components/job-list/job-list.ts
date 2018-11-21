@@ -23,10 +23,7 @@ export class JobListComponent {
       console.log('No user is signed in.');
     }
 
-    console.log(user);
-
-
-    firebase.database().ref('job/').on('value', resp => {
+    firebase.database().ref(authService.getPathUser() + 'job/').on('value', resp => {
       this.items = [];
       resp.forEach(childSnapshot => {
         this.items.push(this.createItemObj(childSnapshot));

@@ -22,4 +22,8 @@ export class AuthServiceProvider {
     return firebase.auth().currentUser ? true : false;
   }
 
+  getPathUser(): string {
+    return 'users/' + firebase.auth().currentUser.uid + "/";
+  }
+
 }

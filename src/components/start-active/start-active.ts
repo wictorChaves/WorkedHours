@@ -16,12 +16,12 @@ export class StartActiveComponent {
   items = [];
   labelBtnStart = "Iniciar Atividade";
 
-  ref = firebase.database().ref('job/');
+  ref = firebase.database().ref(this.authService.getPathUser() + 'job/');
 
   constructor(public navCtrl: NavController, private navParams: NavParams, public authService: AuthServiceProvider) {
     this.id = navParams.get('id');
     
-    let newInfo = firebase.database().ref('job/' + this.id);
+    let newInfo = firebase.database().ref(this.authService.getPathUser() + 'job/' + this.id);
     newInfo.on('value', resp => {
       this.Job = resp.val();
       if (!this.Job.hasOwnProperty('worked')) {
@@ -54,7 +54,7 @@ export class StartActiveComponent {
   }
 
   updateJob() {
-    firebase.database().ref('job/' + this.id).update(this.Job);
+    firebase.database().ref(this.authService.getPathUser() + 'job/' + this.id).update(this.Job);
   }
 
   updateListTime() {
