@@ -1,3 +1,5 @@
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
+import { JobListComponent } from './../job-list/job-list';
 import { CreateUserComponent } from './../create-user/create-user';
 import { Component } from '@angular/core';
 import { AlertController, NavController } from 'ionic-angular';
@@ -11,14 +13,22 @@ export class LoginComponent {
 
   user = {};
 
-  constructor(private navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(private navCtrl: NavController, public alertCtrl: AlertController, public authService: AuthServiceProvider) {
+
   }
+
+  ionViewCanEnter() {
+    if (this.authService.authenticated()) {
+      this.navCtrl.setRoot(JobListComponent);
+    }
+  } 
 
   eventSubmit() {
     if (this.validation()) {
       var self = this;
       firebase.auth().signInWithEmailAndPassword(this.user['email'], this.user['password']).then(() => {
         self.successAlert('Usuário logado!');
+        this.navCtrl.setRoot(JobListComponent);
       }).catch(function (error) {
         self.customMessage(error.code, error.message);
       });
@@ -74,7 +84,6 @@ export class LoginComponent {
   }
 
   eventBtnCreateAccount(event) {
-    console.log(event);
     this.navCtrl.push(CreateUserComponent);
   }
 

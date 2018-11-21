@@ -51,6 +51,7 @@ export class MyApp {
     }, function (error) {
       console.error('Sign Out Error', error);
     });
+    this.nav.setRoot(LoginComponent);
   }
 
 }
