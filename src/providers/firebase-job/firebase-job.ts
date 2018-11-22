@@ -19,7 +19,7 @@ export class FirebaseJobProvider {
 
   readAll() {
     return new Promise((resolve, reject) => {
-      firebase.database().ref(this.url).on('value', resp => {
+      firebase.database().ref(this.url).orderByChild('updated_at').on('value', resp => {
         var items = [];
         resp.forEach(childSnapshot => {
           items.push(childSnapshot);
