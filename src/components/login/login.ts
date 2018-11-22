@@ -1,3 +1,4 @@
+import { ErrorsFirebaseMessages } from './../../helper/ErrorsFirebaseMessages';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { JobListComponent } from './../job-list/job-list';
 import { CreateUserComponent } from './../create-user/create-user';
@@ -30,24 +31,9 @@ export class LoginComponent {
         self.successAlert('Usuário logado!');
         this.navCtrl.setRoot(JobListComponent);
       }).catch(function (error) {
-        self.customMessage(error.code, error.message);
+        this.erroAlert(ErrorsFirebaseMessages.CodeToMessages(error.code, error.message));
       });
     }
-  }
-
-  customMessage(errorCode, errorMessage) {
-    switch (errorCode) {
-      case 'auth/user-not-found': {
-        errorMessage = 'Usuário não cadastrado';
-        break;
-      }
-      case 'auth/wrong-password': {
-        errorMessage = 'Senha incorreta';
-        break;
-      }
-    }
-    console.log(errorCode);
-    this.erroAlert(errorMessage);
   }
 
   validation() {

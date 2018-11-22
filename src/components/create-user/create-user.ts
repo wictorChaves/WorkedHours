@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import * as firebase from 'Firebase';
+import { ErrorsFirebaseMessages } from '../../helper/ErrorsFirebaseMessages';
 
 @Component({
   selector: 'create-user',
@@ -19,28 +20,9 @@ export class CreateUserComponent {
       firebase.auth().createUserWithEmailAndPassword(this.user['email'], this.user['password']).then(() => {
         self.successAlert('Usuário cadastrado com sucesso!');
       }).catch(function (error) {
-        self.customMessage(error.code, error.message);
+        this.erroAlert(ErrorsFirebaseMessages.CodeToMessages(error.code, error.message));
       });
     }
-  }
-
-  customMessage(errorCode, errorMessage) {
-    switch (errorCode) {
-      case 'auth/invalid-email': {
-        errorMessage = 'E-mail inválido';
-        break;
-      }
-      case 'auth/weak-password': {
-        errorMessage = 'A senha deve ter no mínimo 6 caracteres';
-        break;
-      }
-      case 'auth/email-already-in-use': {
-        errorMessage = 'E-mail já esta cadastrado';
-        break;
-      }
-    }
-    console.log(errorCode);
-    this.erroAlert(errorMessage);
   }
 
   validation() {

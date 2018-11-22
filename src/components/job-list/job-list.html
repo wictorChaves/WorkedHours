@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+    <button ion-item *ngFor="let item of items" (press)="itemPressed($event, item)" (click)="itemTapped($event, item)">
       <ion-icon [name]="item.icon" item-start></ion-icon>
       {{item.title}}
     </button>

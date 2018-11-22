@@ -1,16 +1,9 @@
+import { FirebaseJobProvider } from './../../providers/firebase-job/firebase-job';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
-import { DatetimeHelper } from './../../helper/DatetimeHelper';
 import { StartActiveComponent } from './../start-active/start-active';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import * as firebase from 'Firebase';
 
-/**
- * Generated class for the JobCreateComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'job-create',
   templateUrl: 'job-create.html'
@@ -19,7 +12,7 @@ export class JobCreateComponent {
 
   job = {}
 
-  constructor(private navCtrl: NavController, public authService: AuthServiceProvider) {
+  constructor(private firebaseJobProvider:FirebaseJobProvider, private navCtrl: NavController, public authService: AuthServiceProvider) {
 
   }
 
@@ -28,10 +21,7 @@ export class JobCreateComponent {
   } 
 
   eventSubmit() {
-    let newJob = firebase.database().ref(this.authService.getPathUser() + '/job/').push();
-    this.job['created_at'] = DatetimeHelper.getTimeStamp();
-    this.job['updated_at'] = DatetimeHelper.getTimeStamp();
-    newJob.set(this.job);
+    let newJob = this.firebaseJobProvider.create(this.job);
     this.navCtrl.setRoot(StartActiveComponent, {
       id: newJob.key
     });

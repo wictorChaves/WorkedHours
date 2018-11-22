@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StartActiveComponent } from '../components/start-active/start-active';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { FirebaseJobProvider } from '../providers/firebase-job/firebase-job';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthServiceProvider
+    AuthServiceProvider,
+    FirebaseJobProvider
   ]
 })
 export class AppModule { }
