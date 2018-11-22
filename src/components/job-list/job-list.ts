@@ -1,3 +1,4 @@
+import { FirebaseArchiveProvider } from './../../providers/firebase-archive/firebase-archive';
 import { FirebaseJobProvider } from './../../providers/firebase-job/firebase-job';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { JobCreateComponent } from './../job-create/job-create';
@@ -14,7 +15,11 @@ export class JobListComponent {
 
   items: Array<{ id: number, title: string, note: string, icon: string }> = [];
 
-  constructor(private firebaseJobProvider: FirebaseJobProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
+  constructor(private firebaseJobProvider: FirebaseJobProvider, private firebaseArchiveProvider: FirebaseArchiveProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
+    this.loadList();
+  }
+
+  loadList() {
     var self = this;
     this.firebaseJobProvider.readAll().then((res: Array<any>) => {
       self.items = this.formatToList(res);
@@ -57,8 +62,19 @@ export class JobListComponent {
         {
           text: 'Sim',
           handler: () => {
-            console.log(item.id);
-            console.log('Agree clicked');
+            var self = this;
+            self.firebaseJobProvider.readById(item.id).then((res: any) => {
+              self.firebaseArchiveProvider.create(res.val()).then((res: any) => {
+                self.firebaseJobProvider.remove(item.id).then((res: any) => {
+                  this.loadList();
+                  this.alertCtrl.create({
+                    title: 'Arquivado',
+                    subTitle: 'Item arquivado com sucesso!',
+                    buttons: ['ok']
+                  }).present();
+                });
+              });
+            });
           }
         }
       ]

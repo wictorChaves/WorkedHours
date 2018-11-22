@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StartActiveComponent } from '../components/start-active/start-active';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { FirebaseJobProvider } from '../providers/firebase-job/firebase-job';
+import { FirebaseArchiveProvider } from './../providers/firebase-archive/firebase-archive';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { FirebaseJobProvider } from '../providers/firebase-job/firebase-job';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthServiceProvider,
-    FirebaseJobProvider
+    FirebaseJobProvider,
+    FirebaseArchiveProvider
   ]
 })
 export class AppModule { }

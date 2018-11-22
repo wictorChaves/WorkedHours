@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'Firebase';
 
 @Injectable()
-export class FirebaseJobProvider {
+export class FirebaseArchiveProvider {
 
-  url = this.authService.getPathUser() + '/job/';
+  url = this.authService.getPathUser() + '/archive/';
 
   constructor(public authService: AuthServiceProvider) {
   }
