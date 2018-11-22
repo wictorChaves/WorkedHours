@@ -19,7 +19,7 @@ export class StartActiveComponent {
   ref = firebase.database().ref(this.authService.getPathUser() + 'job/');
 
   constructor(public navCtrl: NavController, private navParams: NavParams, public authService: AuthServiceProvider) {
-    this.id = navParams.get('id');
+    this.id = this.navParams.get('id');
     
     let newInfo = firebase.database().ref(this.authService.getPathUser() + 'job/' + this.id);
     newInfo.on('value', resp => {

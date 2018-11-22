@@ -5,6 +5,7 @@ import { JobListComponent } from './job-list/job-list';
 import { CreateUserComponent } from './create-user/create-user';
 import { LoginComponent } from './login/login';
 import { ArchiveListComponent } from './archive-list/archive-list';
+import { JobArchiveComponent } from './job-archive/job-archive';
 @NgModule({
     declarations: [StartActiveComponent,
         JobCreateComponent,
@@ -12,13 +13,15 @@ import { ArchiveListComponent } from './archive-list/archive-list';
         CreateUserComponent,
         LoginComponent,
     LoginComponent,
-    ArchiveListComponent,],
+    ArchiveListComponent,
+    JobArchiveComponent,],
     imports: [],
     exports: [StartActiveComponent,
         JobCreateComponent,
         JobListComponent,
         CreateUserComponent,
     LoginComponent,
-    ArchiveListComponent]
+    ArchiveListComponent,
+    JobArchiveComponent]
 })
 export class ComponentsModule { }

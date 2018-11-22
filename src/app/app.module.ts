@@ -1,3 +1,4 @@
+import { JobArchiveComponent } from './../components/job-archive/job-archive';
 import { LoginComponent } from './../components/login/login';
 import { CreateUserComponent } from './../components/create-user/create-user';
 import { JobListComponent } from './../components/job-list/job-list';
@@ -22,7 +23,8 @@ import { FirebaseArchiveProvider } from './../providers/firebase-archive/firebas
     JobCreateComponent,
     CreateUserComponent,
     LoginComponent,
-    JobListComponent
+    JobListComponent,
+    JobArchiveComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { FirebaseArchiveProvider } from './../providers/firebase-archive/firebas
     JobCreateComponent,
     CreateUserComponent,
     LoginComponent,
-    JobListComponent
+    JobListComponent,
+    JobArchiveComponent
   ],
   providers: [
     StatusBar,

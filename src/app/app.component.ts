@@ -1,3 +1,4 @@
+import { JobArchiveComponent } from './../components/job-archive/job-archive';
 import { AuthServiceProvider } from './../providers/auth-service/auth-service';
 import { LoginComponent } from './../components/login/login';
 import { JobListComponent } from './../components/job-list/job-list';
@@ -24,7 +25,8 @@ export class MyApp {
     
     this.pages = [
       { title: 'Trabalhos', component: JobListComponent },
-      { title: 'Novo trabalho', component: JobCreateComponent }
+      { title: 'Novo trabalho', component: JobCreateComponent },
+      { title: 'Arquivados', component: JobArchiveComponent }      
     ];
 
   }
